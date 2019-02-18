@@ -1,0 +1,54 @@
+version : '3'
+services:
+  bundles_esdb:
+    image: elasticsearch:6.5.4
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+      - bundles_esv:/usr/share/elasticsearch/data
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nproc: 4096
+      nofile:
+        soft: 65536
+        hard: 65536
+    networks:
+      - bundles_app
+  #elastic db
+  bundles_redis:
+    image: redis:5.0.3
+    volumes:
+      - bundles_redisv:/data
+    networks:
+      - bundles_app
+    ports:
+      - 9200:9200
+  bundles_repo:
+    build: 
+      context: .
+      args: 
+        - NODE_ENV=development
+    image: bear888660/bundles-repo
+    ports:  
+      - '80:60900'
+    networks:
+      - bundles_app
+    depends_on:
+      - bundles_esdb
+      - bundles_redis
+    volumes: 
+      - '.:/opt/app'
+    environment: 
+      - NODE_ENV=development
+      
+    
+
+volumes:
+  bundles_esv:
+  bundles_redisv:
+
+networks:
+  bundles_app:
+

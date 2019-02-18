@@ -1,0 +1,19 @@
+{
+    "serviceUrl": "http://lamb-yui.com",
+    "es": {
+      "books_index": "http://bundles_esdb:9200/books",
+      "bundles_index": "http://bundles_esdb:9200/b4"
+    },
+    "redis": {
+        "host": "bundles_redis",
+        "port": 6379,
+        "secret": "unguessable"
+    },
+    "auth": {
+        "google": {
+            "appID": "your appID",
+            "appSecret": "your appSecret"
+        }
+    }
+  }
+  

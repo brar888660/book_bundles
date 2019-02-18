@@ -1,0 +1,13 @@
+{
+  "serviceUrl": "http://lamb-yui.com",
+  "es": {
+    "books_index": "http://bundles_esdb:9200/books",
+    "bundles_index": "http://bundles_esdb:9200/b4"
+  },
+  "auth": {
+      "google": {
+        "appID": "your appID",
+        "appSecret": "your appSecret"
+      }
+  }
+}
